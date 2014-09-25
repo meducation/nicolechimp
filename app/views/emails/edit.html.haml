@@ -111,6 +111,9 @@
   %h1 Editing email
 
   = form_for @email, remote: true do |f|
+    .field= f.text_field :title, placeholder: "Title"
+    .field= f.select :newsletter, newsletter_mappings
+
     .field
       = f.label :introduction
       %br
