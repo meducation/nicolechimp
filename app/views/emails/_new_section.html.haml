@@ -1,0 +1,3 @@
+=fields_for(@email) do |f|
+  = f.fields_for :sections, [@email.sections.build] do |builder|
+    =render "section", builder: builder

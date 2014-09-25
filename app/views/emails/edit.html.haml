@@ -1,0 +1,90 @@
+:css
+  * { box-sizing: border-box;}
+  body {
+    background-color:#fff;
+    color:#333;
+    font-family:Helvetica Neue;
+  }
+  #preview {
+    top:0;
+    right:0;
+    position:fixed;
+    width:650px;
+    height:95%;
+  }
+  #container {
+    width:500px;
+    padding:10px;
+  }
+  .section {
+    border: 1px solid #aaa;
+    border-radius:5px;
+    background:#fafafa;
+    padding:10px;
+    margin-bottom:10px;
+  }
+  input, textarea {
+    padding:5px;
+    border-radius:5px;
+    font-size:14px;
+    line-height:20px;
+    width:100%;
+    border:1px solid #ccc;
+  }
+  input {
+    line-height:14px;
+  }
+  input[type=submit] {
+    background:lightblue;
+    border:1px solid #aaf;
+    color:black;
+    padding:10px;
+  }
+  input.update {
+    display:inline-block;
+    width:75%;
+  }
+  input.destroy {
+    display:inline-block;
+    width:24%;
+    background:red;
+    color:#fff;
+  }
+  input[type=checkbox] {
+    width:auto;
+  }
+
+  textarea {
+    height:100px;
+  }
+
+%iframe#preview{src: preview_email_path}
+
+#container
+  %h1 Editing email
+
+  = form_for @email, remote: true do |f|
+    .field
+      = f.label :introduction
+      %br
+      = f.text_area :introduction
+      =submit_tag "Update"
+
+    .field
+      = f.label :conclusion
+      %br
+      = f.text_area :conclusion
+      =submit_tag "Update"
+
+    #sections
+      = f.fields_for :sections do |builder|
+        =render "section", builder: builder
+
+    =link_to "Add Section", new_section_email_path(@email), remote: true
+
+  = link_to 'Show', @email
+  = link_to 'Back', emails_path
+
+:coffeescript
+  $('.destroy').click ->
+    $(this).parent().children('.destroy_hidden').val(1)

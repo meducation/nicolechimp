@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  newsletter_id: 
+  introduction: MyText
+  conclusion: MyText
+
+two:
+  title: MyString
+  newsletter_id: 
+  introduction: MyText
+  conclusion: MyText
