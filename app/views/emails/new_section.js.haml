@@ -1,2 +1,5 @@
-$('#sections').append("#{j render "new_section"}")
-
+-id = rand.to_s.gsub('.', '')
+-output = render("new_section")
+-output.gsub!("[0]", "[#{id}]")
+-output.gsub!("_0_", "_#{id}_")
+$('#sections').append("#{j output.html_safe}")

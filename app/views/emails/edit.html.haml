@@ -1,3 +1,38 @@
+:javascript
+  jQuery.extend(
+    jQuery.expr[':'],
+    {
+      /// check that a field's value property has a particular value
+      'field-value': function (el, indx, args) {
+        var a, v = $(el).val();
+        if ( (a = args[3]) ) {
+          switch ( a.charAt(0) ) {
+            /// begins with
+            case '^':
+              return v.substring(0,a.length-1) == a.substring(1,a.length);
+            break;
+            /// ends with
+            case '$':
+              return v.substr(v.length-a.length-1,v.length) == 
+                a.substring(1,a.length);
+            break;
+            /// contains
+            case '*': return v.indexOf(a.substring(1,a.length)) != -1; break;
+            /// equals
+            case '=': return v == a.substring(1,a.length); break;
+            /// not equals
+            case '!': return v != a.substring(1,a.length); break;
+            /// equals
+            default: return v == a; break;
+          }
+        }
+        else {
+          return !!v;
+        }
+      }
+    }
+  );
+
 :css
   * { box-sizing: border-box;}
   body {
@@ -10,8 +45,19 @@
     right:0;
     position:fixed;
     width:650px;
-    height:95%;
+    height:92%;
+    border:solid #aaa;
+    border-width:0 0 1px 1px;
   }
+
+  #output { 
+    position:fixed;
+    bottom:10px;
+    right:0;
+    width: 650px; 
+    height:20px
+  }
+
   #container {
     width:500px;
     padding:10px;
@@ -59,6 +105,7 @@
   }
 
 %iframe#preview{src: preview_email_path}
+%textarea#output= h email_preview(@email)
 
 #container
   %h1 Editing email
@@ -77,7 +124,7 @@
       =submit_tag "Update"
 
     #sections
-      = f.fields_for :sections do |builder|
+      = f.fields_for :sections, include_id: false do |builder|
         =render "section", builder: builder
 
     =link_to "Add Section", new_section_email_path(@email), remote: true
@@ -86,5 +133,4 @@
   = link_to 'Back', emails_path
 
 :coffeescript
-  $('.destroy').click ->
-    $(this).parent().children('.destroy_hidden').val(1)
+  $('#output').click -> $(this).select()

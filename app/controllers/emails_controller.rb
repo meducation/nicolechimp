@@ -13,6 +13,7 @@ class EmailsController < ApplicationController
   end
 
   def preview
+    render layout: false
   end
 
   def new_section
@@ -34,7 +35,7 @@ class EmailsController < ApplicationController
 
     respond_to do |format|
       if @email.save
-        format.html { redirect_to @email, notice: 'Email was successfully created.' }
+        format.html { redirect_to edit_email_path(@email), notice: 'Email was successfully created.' }
         format.json { render :show, status: :created, location: @email }
       else
         format.html { render :new }
@@ -76,6 +77,6 @@ class EmailsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def email_params
-      params.require(:email).permit(:title, :newsletter, :introduction, :conclusion, sections_attributes: [:id, :title, :url, :site, :content, :_destroy])
+      params.require(:email).permit(:title, :newsletter, :introduction, :conclusion, sections_attributes: [:id, :title, :url, :site, :content, :section_heading, :order_value, :_destroy])
     end
 end

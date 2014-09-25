@@ -1,1 +1,5 @@
 $('#preview')[0].contentWindow.location.reload(true)
+$('#output').val("#{j h(email_preview(@email))}")
+
+-@email.sections.each do |section|
+  $('input.url:field-value(=#{section.url})').parents('.section').children('.id').val(#{section.id})

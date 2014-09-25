@@ -6,6 +6,8 @@ class CreateSections < ActiveRecord::Migration
       t.string :url, null: false
       t.string :site, null: false
       t.text :content, null: false
+      t.string :section_heading, null: false
+      t.integer :order_value, null: false
       t.timestamps
     end
   end

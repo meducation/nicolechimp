@@ -1,8 +1,18 @@
-.section
+.section{id: "section_#{builder.object.try(:id)}"}
+  = builder.hidden_field :id, class: 'id'
   .field= builder.text_field :title, placeholder: "Title"
-  .field= builder.text_field :url, placeholder: "URL"
+  .field= builder.text_field :url, placeholder: "URL", class: 'url'
   .field= builder.text_field :site, placeholder: "Site"
   .field= builder.text_area :content, placeholder: "Content"
+  .field= builder.text_field :section_heading, placeholder: "Section Heading"
+  .field= builder.text_field :order_value, placeholder: "Order", style: "width:70px"
   =builder.hidden_field :_destroy, class: 'destroy_hidden'
   =submit_tag "Update", class: 'update'
   =submit_tag "Destroy", class: 'destroy'
+
+:coffeescript
+  $('.destroy').click ->
+    $(this).parent().children('.destroy_hidden').val(1)
+    setTimeout =>
+      $(this).parent().remove()
+    ,50

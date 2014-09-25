@@ -23,11 +23,13 @@ ActiveRecord::Schema.define(version: 20140925104121) do
   end
 
   create_table "sections", force: true do |t|
-    t.integer  "email_id",   null: false
-    t.string   "title",      null: false
-    t.string   "url",        null: false
-    t.string   "site",       null: false
-    t.text     "content",    null: false
+    t.integer  "email_id",        null: false
+    t.string   "title",           null: false
+    t.string   "url",             null: false
+    t.string   "site",            null: false
+    t.text     "content",         null: false
+    t.string   "section_heading", null: false
+    t.integer  "order_value",     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
