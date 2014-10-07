@@ -1,5 +1,5 @@
 class Email < ActiveRecord::Base
-  enum newsletter: ["Cardiology Weekly", "Junior Doctor Weekly", "Medical Student Weekly"]
+  enum newsletter: ["Cardiology Weekly", "Junior Doctor Weekly", "Medical Student Weekly", "Pediatrics Weekly", "Radiology Weekly"]
   has_many :sections
   accepts_nested_attributes_for :sections, allow_destroy: true
 

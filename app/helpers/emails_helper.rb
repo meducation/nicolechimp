@@ -20,6 +20,10 @@ module EmailsHelper
       "https://gallery.mailchimp.com/4792e8741b3eadbf809a562de/images/251e9d15-8edf-41a5-a2e1-6875159fd42f.png"
     when "Medical Student Weekly"
       "https://gallery.mailchimp.com/4792e8741b3eadbf809a562de/images/540bd839-51ac-4dc4-ac2c-cbaa450163b6.png"
+    when "Radiology Weekly"
+      "https://s3-eu-west-1.amazonaws.com/meducation-newsletters/radiology_weekly.png"
+    when "Pediatrics Weekly"
+      "https://s3-eu-west-1.amazonaws.com/meducation-newsletters/pediatrics_weekly.png"
     end
   end
 
