@@ -24,6 +24,8 @@ module EmailsHelper
       "https://s3-eu-west-1.amazonaws.com/meducation-newsletters/radiology_weekly.png"
     when "Pediatrics Weekly"
       "https://s3-eu-west-1.amazonaws.com/meducation-newsletters/pediatrics_weekly.png"
+    when "Nurses Weekly"
+      "http://meducation-newsletters.s3.amazonaws.com/NW%20with%20underline.png"
     end
   end
 
